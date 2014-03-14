@@ -1,4 +1,4 @@
-package org.jp.wiki;
+package org.rsna.ui;
 
 import java.io.*;
 import java.util.*;
