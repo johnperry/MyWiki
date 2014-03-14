@@ -1,0 +1,84 @@
+<h1><center>PersonalWiki Syntax</center></h1>
+<hr>
+<h2>Headings</h2>
+<p style="margin-top:0;margin-left:20">
+H1: <tt>=heading text</tt><br>
+H2: <tt>==heading text</tt><br>
+H3: <tt>===heading text</tt><br>
+</p>
+<p style="margin-top:10;margin-left:20">
+The first '=' character must be the first character on the line.
+</p>
+
+<h2>Horizontal Rule</h2>
+<p style="margin-top:0;margin-left:20">
+<tt>----</tt>
+</p>
+<p style="margin-top:10;margin-left:20">
+A line consisting of four or more dashes and no other characters.
+</p>
+
+<h2>Bold Text</h2>
+<p style="margin-top:0;margin-left:20">
+<tt>''bold text''</tt>
+</p>
+
+<h2>Underlined Text</h2>
+<p style="margin-top:0;margin-left:20">
+<tt>__underlined text__</tt>
+</p>
+
+<h2>Italic Text</h2>
+<p style="margin-top:0;margin-left:20">
+<tt>~~italic text~~</tt>
+</p>
+
+<h2>Ordered List</h2>
+<p style="margin-top:0;margin-left:20">
+<tt># list item</tt> (starting at the beginning of a line)
+</p>
+
+<h2>Unordered List</h2>
+<p style="margin-top:0;margin-left:20">
+<tt>* list item</tt> (starting at the beginning of a line)
+</p>
+
+<h2>Hyperlink</h2>
+<p style="margin-top:0;margin-left:20">
+<tt>
+[[href]]<br>
+[[href|anchor text]]<br>
+</tt>
+<br>
+Note: <tt>href</tt> must start with:
+<ul>
+<li><tt>http://</tt>
+<li><tt>https://</tt>
+<li><tt>file://</tt>
+<li><tt>mailto://</tt>
+</ul>
+</p>
+<p style="margin-top:0;margin-left:20">
+Any <tt>href</tt> that does not start with one of the above is treated
+as a search within the deck.
+</p>
+<p style="margin-top:10;margin-left:20">
+For special characters to be found in searches, they must be escaped in the anchor text. e.g., <tt>\$</tt>
+</p>
+
+<h2>Paragraphs</h2>
+<p style="margin-top:0;margin-left:20">
+Paragraphs are defined by two or more newlines in succession.
+</p>
+<p style="margin-top:10;margin-left:20">
+The left margin is set by the first characters of the paragraph:
+<ul>
+<li>Two colons:  60 pixels
+<li>One colon: 30 pixels
+<li>Any other character: 0 pixels
+</ul>
+</p>
+<br>
+
+
+

@@ -1,0 +1,12 @@
+PersonalWiki is a simple wiki that stores
+its data as pages called cards in an encrypted
+file.
+
+Cards contain text formatted in a wiki-like
+syntax as described in the Help frame.
+
+The top level headings of cards are displayed
+on the Index card.
+
+Cards may be found by entering search text in
+the footer.
