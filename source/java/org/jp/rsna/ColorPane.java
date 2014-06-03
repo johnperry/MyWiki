@@ -23,9 +23,17 @@ public class ColorPane extends JTextPane {
 	 * Create a ColorPane.
 	 */
 	public ColorPane() {
+		this("");
+	}
+
+	/**
+	 * Create a ColorPane.
+	 */
+	public ColorPane(String text) {
 		super();
 		setFont(new Font("Monospaced",Font.PLAIN,12));
 		setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+		setText(text);
 	}
 
 	/**
@@ -163,7 +171,7 @@ public class ColorPane extends JTextPane {
 
 	/**
 	 * Append a string with the current color. This method is not thread safe.
-	 * This method is public only for backward compatibility; use println instead.
+	 * This method is public only for backward compatibility; use print instead.
 	 */
 	public synchronized void append(String s) {
 		int len = getDocument().getLength(); // same value as getText().length();
@@ -173,7 +181,7 @@ public class ColorPane extends JTextPane {
 
 	/**
 	 * Append a string with the specified color. This method is not thread safe.
-	 * This method is public only for backward compatibility; use println instead.
+	 * This method is public only for backward compatibility; use print instead.
 	 */
 	public synchronized void append(Color c, String s) {
 		StyleContext sc = StyleContext.getDefaultStyleContext();

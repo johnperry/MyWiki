@@ -160,6 +160,7 @@ public class MyWiki extends JFrame {
 				deck.add(c);
 				cardPanel.display(new Card[] { c });
 				cardPanel.edit();
+				cardPanel.select(1, 6); //Select the word "Title"
 				cardPanel.requestFocus();
 			}
 		});
@@ -430,6 +431,10 @@ public class MyWiki extends JFrame {
 				}
 				catch (Exception ignore) { }
 			}
+		}
+
+		public void select(int start, int end) {
+			editorPane.select(start, end);
 		}
 
 		public void hyperlinkUpdate(HyperlinkEvent r) {
