@@ -32,11 +32,14 @@ public class MyWiki extends JFrame {
     }
 
     public MyWiki() {
+		ProcessListener listener = new ProcessListener(17999, this);
+		if (listener.check()) System.exit(0);
 		props = new PropertiesFile(new File("MyWiki.properties"));
 		deck = new Deck(deckFile, this);
     	initComponents();
     	deck.load();
     	cardPanel.displayIndex();
+    	listener.listen();
     }
 
     private void initComponents() {
