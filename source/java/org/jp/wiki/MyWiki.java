@@ -105,7 +105,7 @@ public class MyWiki extends JFrame {
 		deckMenu.add(changeKeyItem);
 
 		JMenuItem indexItem = new JMenuItem("Display index");
-		indexItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I,InputEvent.CTRL_MASK));
+		indexItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I,InputEvent.CTRL_DOWN_MASK));
 		indexItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				footerPanel.clearSearchField();
@@ -115,7 +115,7 @@ public class MyWiki extends JFrame {
 		deckMenu.add(indexItem);
 
 		JMenuItem saveItem = new JMenuItem("Save");
-		saveItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_MASK));
+		saveItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_DOWN_MASK));
 		saveItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				save();
@@ -140,7 +140,7 @@ public class MyWiki extends JFrame {
 		deckMenu.add(deleteBackupsItem);
 
 		JMenuItem exitItem = new JMenuItem("Exit");
-		exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,InputEvent.CTRL_MASK));
+		exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,InputEvent.CTRL_DOWN_MASK));
 		exitItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				save();
@@ -155,7 +155,7 @@ public class MyWiki extends JFrame {
 		cardMenu.setText("Card");
 
 		JMenuItem newCardItem = new JMenuItem("New card");
-		newCardItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,InputEvent.CTRL_MASK));
+		newCardItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,InputEvent.CTRL_DOWN_MASK));
 		newCardItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				footerPanel.clearSearchField();
@@ -170,7 +170,7 @@ public class MyWiki extends JFrame {
 		cardMenu.add(newCardItem);
 
 		JMenuItem displayCardItem = new JMenuItem("Display current card");
-		displayCardItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,InputEvent.CTRL_MASK));
+		displayCardItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,InputEvent.CTRL_DOWN_MASK));
 		displayCardItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cardPanel.display();
@@ -179,7 +179,7 @@ public class MyWiki extends JFrame {
 		cardMenu.add(displayCardItem);
 
 		JMenuItem editCardItem = new JMenuItem("Edit current card");
-		editCardItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,InputEvent.CTRL_MASK));
+		editCardItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,InputEvent.CTRL_DOWN_MASK));
 		editCardItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cardPanel.edit();
@@ -188,7 +188,7 @@ public class MyWiki extends JFrame {
 		cardMenu.add(editCardItem);
 
 		JMenuItem printCardItem = new JMenuItem("Print current card");
-		printCardItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P,InputEvent.CTRL_MASK));
+		printCardItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P,InputEvent.CTRL_DOWN_MASK));
 		printCardItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				printCard();
@@ -197,7 +197,7 @@ public class MyWiki extends JFrame {
 		cardMenu.add(printCardItem);
 
 		JMenuItem removeCardItem = new JMenuItem("Remove current card");
-		removeCardItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,InputEvent.CTRL_MASK));
+		removeCardItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,InputEvent.CTRL_DOWN_MASK));
 		removeCardItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				if (cardPanel.deckCardIsActive()
@@ -214,7 +214,7 @@ public class MyWiki extends JFrame {
 		helpMenu.setText("Help");
 
 		JMenuItem helpItem = new JMenuItem("Display Help Frame");
-		helpItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L,InputEvent.CTRL_MASK));
+		helpItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L,InputEvent.CTRL_DOWN_MASK));
 		helpItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				helpFrame.setVisible(true);
@@ -273,6 +273,14 @@ public class MyWiki extends JFrame {
 			File backup = new File(parent, target + n + "]" + ext);
 			backup.delete(); //shouldn't be there, but just in case.
 			FileUtil.copy(targetFile, backup);
+			String cloudDir = props.getProperty("cloud", "").trim();
+			if (!cloudDir.equals("")) {
+				File cloud = new File(cloudDir);
+				if (cloud.exists() && cloud.isDirectory()) {
+					cloud = new File(cloud, "Deck.xxx");
+					FileUtil.copy(targetFile, cloud);
+				}
+			}
 		}
 	}
 

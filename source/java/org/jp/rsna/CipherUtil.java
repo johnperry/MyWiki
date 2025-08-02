@@ -71,8 +71,9 @@ public class CipherUtil {
 
 	//Get a Cipher initialized with the specified key.
 	private static Cipher getCipher(int mode, String keyText) throws Exception {
-		Provider sunJce = new com.sun.crypto.provider.SunJCE();
-		Security.addProvider(sunJce);
+		//Adding the SunJCE provider is not required
+		//Provider sunJce = new com.sun.crypto.provider.SunJCE();
+		//Security.addProvider(sunJce);
 		byte[] key = getEncryptionKey(keyText,128);
 		SecretKeySpec skeySpec = new SecretKeySpec(key,"Blowfish");
 

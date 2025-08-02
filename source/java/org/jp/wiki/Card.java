@@ -3,6 +3,7 @@ package org.jp.wiki;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.net.URI;
 import java.net.URL;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -80,8 +81,9 @@ public class Card {
 		Pattern pattern = Pattern.compile("\\[\\[(http[s]?://[^\\]]*)\\]\\]");
 		Matcher matcher = pattern.matcher(editorText);
 		if (matcher.find()) {
-			String url = matcher.group(1).trim();
-			try { return new URL(url); }
+			try { 
+				URI uri = new URI(matcher.group(1).trim());
+				return uri.toURL(); }
 			catch (Exception returnNull) { }
 		}
 		return null;

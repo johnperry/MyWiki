@@ -1,10 +1,11 @@
 package org.jp.wiki;
 
-import java.awt.Component;
+import java.awt.Frame;
 import java.io.OutputStream;
 import java.net.URLConnection;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URI;
 import java.net.URL;
 import javax.net.ServerSocketFactory;
 import org.rsna.util.FileUtil;
@@ -12,17 +13,18 @@ import org.rsna.util.FileUtil;
 public class ProcessListener {
 
 	int port;
-	Component component;
+	Frame frame;
 
-	public ProcessListener(int port, Component component) {
+	public ProcessListener(int port, Frame frame) {
 		this.port = port;
-		this.component = component;
+		this.frame = frame;
 	}
 
 	public boolean check() {
 		boolean result = false;
 		try {
-			URL url = new URL("http://127.0.0.1:"+port);
+			URI uri = new URI("http://127.0.0.1:"+port);
+			URL url = uri.toURL();
 			URLConnection conn = url.openConnection();
 			conn.connect();
 			result = true;
@@ -56,7 +58,8 @@ public class ProcessListener {
 				try {
 					Socket socket = serverSocket.accept();
 					socket.close();
-					component.setVisible(true);
+					frame.setState(Frame.NORMAL);
+					frame.setVisible(true);
 				}
 				catch (Exception ignore) { }
 			}
